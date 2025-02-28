@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolo Equazione di Secondo Grado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 680px;
+            width: 100%;
+            height: 770px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 50px;
+            
+        }
+        label {
+            font-size: 25px;
+            font-weight: 700;
+            display: flex;
+            text-align: left;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 30px;
+            font-weight: 800;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 25px;
+            font-weight: 700;
+        }
+        button {
+            background: #4facfe;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #00c6ff;
+        }
+        p {
+            margin-top: 0px;
+            font-size: 40px;
+            font-weight: 800;
+        }
+        #risultatox0 {
+            margin-top: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calcolo delle soluzioni di ax² + bx + c = 0</h1>
+        <label for="a">Inserisci il valore di a:</label>
+        <input type="number" id="a" step="any"><br>
+
+        <label for="b">Inserisci il valore di b:</label>
+        <input type="number" id="b" step="any"><br>
+
+        <label for="c">Inserisci il valore di c:</label>
+        <input type="number" id="c" step="any"><br>
+
+        <button onclick="calcolaSoluzioni()">Calcola Soluzioni</button>
+
+        <p id="risultatox0"></p>
+        <p id="risultatox1"></p>
+        <p id="risultatox2"></p>
+    </div>
+
+    <script>
+        function calcolaSoluzioni() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+
+            const delta = (b * b) - 4 * a * c;
+            let risultato = '';
+
+            if (delta < 0) {
+                document.getElementById("risultatox1").innerText = " "
+                document.getElementById("risultatox2").innerText = " "
+                document.getElementById("risultatox0").innerText = "L'equazione non ha soluzioni reali "
+            } else if (delta === 0) {
+                const x0 = -b / (2 * a);
+                document.getElementById("risultatox0").innerText = "x" + " = " + x0;
+                document.getElementById("risultatox1").innerText = " "
+                document.getElementById("risultatox2").innerText = " "
+            } else {
+                const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                risultato = "Il delta è positivo, quindi l'equazione ha due soluzioni reali diverse";
+                document.getElementById("risultatox1").innerText = "x1" + " = " + x1;
+                document.getElementById("risultatox2").innerText = "x2" + " = " + x2;
+                document.getElementById("risultatox0").innerText = " "
+            }
+            
+        }
+    </script>
+</body>
+</html>
+
